@@ -1,9 +1,15 @@
 /*
-Contact field set
-Campaign Member field set
-Environment Settings custom hiearchy setting (only active campaigns, only not responded CMs)
-Campaign Filter Settings custom list setting (campaign type filter)
-Custom label
+
+Created by:		Phillip Southern	@phil7s
+Date:			07/09/2015
+Description:	Demo example for presentation Configuration in Disguise.
+
+Configuration used:
+Field Sets for Contact fields and Campaign Member fields
+Hierarchy Custom Setting: Environment_Settings__c to control filtering
+List Custom Setting: Campaign_Type_Filter__c to control picklist value filtering
+Custom Label on VF Page: ContactCMEdit_Label
+
 
 */
 
@@ -25,12 +31,12 @@ public class ContactCMEditController
 
 	private void initData()
 	{
-		//****Hiearchy Custom Setting
+		//**Hiearchy Custom Setting
 		Environment_Settings__c es = Environment_Settings__c.getinstance();
 
 		campaignMembers = new List<CampaignMember>();
 
-		//*****Get Fields from Field Set
+		//**Get Fields from Field Set for campaign member query
 		String cmquery = 'Select Id';
 
 		for(Schema.FieldSetMember f : SObjectType.CampaignMember.FieldSets.CM_Contact.getFields())
@@ -43,7 +49,8 @@ public class ContactCMEditController
 		if(es.Active_Campaign_Filter__c==true) cmquery += ' AND Campaign.isActive = true';
 		if(es.Campaign_Member_Status_Filter__c != null) cmquery += ' AND Status = \'' + es.Campaign_Member_Status_Filter__c + '\'';
 
-			//****List Custom Setting
+
+		//**List Custom Setting to use for query filtering
 		Set<String> campaignTypeValues = new Set<String>();
 		for(Campaign_Type_Filter__c ctf : Campaign_Type_Filter__c.getall().values())
 		{
@@ -51,9 +58,12 @@ public class ContactCMEditController
 		}
 
 		if(!campaignTypeValues.isEmpty()) cmquery+= ' AND Campaign.Type IN :campaignTypeValues';
-		//*****End - Get Fields from Field Set
+
+		//debug statement to check our query
+		system.debug('**query: ' + cmquery);
 
 
+		//**Dynamic query to loop through and add campaign memebers to List to view on VF page.
 		for(Sobject s : database.query(cmquery))
 		{
 			campaignMembers.add((CampaignMember)s);
@@ -61,6 +71,8 @@ public class ContactCMEditController
 
 	}
 
+	//**Save override process (not using standard controller save)
+	//**Update the contact and campaign members, then use the controller to view back into the record.
 	public PageReference saveOvr()
 	{
 		update c;
