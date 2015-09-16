@@ -33,8 +33,8 @@ public class AccountHealthController
         followupFlow.start();
         
         String followupId = (String) followupFlow.getVariableValue('followupObjectId');
-        
         return new PageReference('/' + followupId);
+        
     }
 
 }

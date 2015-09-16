@@ -9,6 +9,10 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>*</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
         <members>Account</members>
         <members>Campaign</members>
         <members>CampaignMember</members>
@@ -16,6 +20,10 @@
         <members>Contact</members>
         <members>Environment_Settings__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Flow</name>
     </types>
     <version>31.0</version>
 </Package>
