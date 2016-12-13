@@ -7,4 +7,18 @@
         <shortDescription>ContactCMEdit_Label</shortDescription>
         <value>View the information and Campaign Members for {0} and make any changes as needed.</value>
     </labels>
+    <labels>
+        <fullName>PriorityViewWelcome</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PriorityViewWelcome</shortDescription>
+        <value>Priority View - to show most recent tasks and cases.</value>
+    </labels>
+    <labels>
+        <fullName>TimeLogWelcome</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TimeLogWelcome</shortDescription>
+        <value>Enter time values for Projects only.</value>
+    </labels>
 </CustomLabels>

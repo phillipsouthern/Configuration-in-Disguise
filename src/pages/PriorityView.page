@@ -1,0 +1,25 @@
+<apex:page controller="PriorityViewController">
+    
+    <apex:outputtext style="font-size:18px;" value="{!$Label.PriorityViewWelcome}"/>
+    <br/>   
+    <br/>
+    <apex:pageblock >
+        <apex:pageBlockTable value="{!tasks}" var="t">
+            <apex:column headerValue="Task Subject" value="{!t.subject}"/>
+            <apex:column headerValue="Status" value="{!t.Status}"/>
+            <apex:column headerValue="Priority" value="{!t.Priority}"/>
+            <apex:column headerValue="Due Date" value="{!t.ActivityDate}"/>
+            <apex:column headerValue="Comments" value="{!t.Description}"/>
+            
+        </apex:pageBlockTable>
+    </apex:pageblock>
+    <apex:pageblock >
+        <apex:pageBlockTable value="{!cases}" var="c">
+            <apex:repeat value="{!$ObjectType.Case.FieldSets.PriorityViewCaseFields}" var="fs">
+                <apex:column headerValue="{!fs.Label}">
+                    <apex:outputField value="{!c[fs]}"/>
+                </apex:column>
+            </apex:repeat>
+        </apex:pageBlockTable>
+    </apex:pageblock>
+</apex:page>
