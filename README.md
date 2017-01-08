@@ -13,3 +13,7 @@ In our demo we built a Visualforce page that was related to a button on the Cont
 Account Health Status
 
 In this demo we showed a Visualforce page and Apex controller that took in data from a user and then sent that information to a Flow.  The Flow determined what to do with the data, in this case we inserted a Case, and then sent back the Id of the record to send the user to.  Please check the Presentation for explanation and example.
+
+Priority View
+
+In this demo we showed a Visualforce page and Lightning Component, both backed by an Apex controller.  These two items show current Cases and Tasks in Lightning Experience home page.  They are controlled by Custom Settings, Custom Metadata, Field Set, and a Custom Label.
